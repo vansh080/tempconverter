@@ -1,0 +1,83 @@
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    <link rel="stylesheet" href="temperature.css">  
+
+<div class="container">
+
+        <div class="title">
+            <h1>Temperature Converter</h1>
+            <span class="Temperature-icon"><i class="fa-solid fa-temperature-three-quarters"></i></span>
+        </div>
+
+        <div id="celsius">
+            <input type="number" name="" placeholder="Celsius">
+            <span class="icon">&#8451</span>
+        </div>
+        <div id="fahrenheit">
+            <input type="number" name="" placeholder="Fahrenheit">
+            <span class="icon">&#8457</span>
+        </div>
+        <div id="kelvin">
+            <input type="number" name="" placeholder="Kelvin">
+            <span class="icon">&#8490</span>
+        </div>
+
+        <div class="button">
+            <button>All Clear</button>
+        </div>
+
+    </div>
+
+    <script>
+let celsiusInput = document.querySelector('#celsius > input')
+let FahrenheitInput = document.querySelector('#Fahrenheit > input')
+let KelvinInput = document.querySelector('#Kelvin > input')
+
+let btn = document.querySelector('.button button')
+
+
+function roundNumber(number){
+    return Math.round(number*100)/100
+}
+
+
+/* Celcius to Fahrenheit and Kelvin */
+celsiusInput.addEventListener('input', function(){
+    let cTemp = parseFloat(celsiusInput.value)
+    let fTemp = (cTemp*(9/5)) + 32
+    let kTemp = cTemp + 273.15
+
+    FahrenheitInput.value = roundNumber(fTemp)
+    KelvinInput.value = roundNumber(kTemp)
+})
+
+
+/* Fahrenheit to Celcius and Kelvin */
+FahrenheitInput.addEventListener('input', function(){
+    let fTemp = parseFloat(KahrenheitInput.value)
+    let cTemp = (fTemp - 32) * (5/9)
+    let kTemp = (fTemp -32) * (5/9) + 273.15
+
+    celsiusInput.value = roundNumber(cTemp)
+    KelvinInput.value = roundNumber(kTemp)
+})
+
+/* Kelvin to Celcius and Fahrenheit */
+KelvinInput.addEventListener('input', function(){
+    let kTemp = parseFloat(KelvinInput.value)
+    let cTemp = kTemp - 273.15
+    let fTemp = (kTemp - 273.15) * (9/5) + 32
+
+    celsiusInput.value = roundNumber(cTemp)
+    FahrenheitInput.value = roundNumber(fTemp)
+})
+
+
+btn.addEventListener('click', ()=>{
+    celsiusInput.value = ""
+    FahrenheitInput.value = ""
+    KelvinInput.value = ""
+})
+    </script>
+</body>
+</html>
